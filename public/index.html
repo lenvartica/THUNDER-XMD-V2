@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thunder XMD V2 Dashboard</title>
+<style>
+:root{color-scheme:dark;--bg:#050914;--card:rgba(17,28,49,.72);--border:rgba(120,190,255,.2);--text:#eef7ff;--muted:#9cb2ca;--cyan:#00e5ff;--blue:#4f8cff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#102a50 0,#050914 45%,#03050b 100%);font-family:Inter,system-ui,sans-serif;color:var(--text);min-height:100vh}.wrap{width:min(1100px,92%);margin:auto;padding:42px 0}.hero{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}.eyebrow{color:var(--cyan);letter-spacing:.18em;font-size:12px;font-weight:800}.h1{font-size:clamp(32px,6vw,62px);margin:8px 0}.sub{color:var(--muted);max-width:620px;line-height:1.7}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:30px}.card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:24px;backdrop-filter:blur(18px);box-shadow:0 18px 70px #0003}.label{color:var(--muted);font-size:13px}.value{font-size:28px;font-weight:800;margin-top:10px}.pill{display:inline-flex;padding:8px 12px;border-radius:999px;background:#00e5ff18;color:var(--cyan);border:1px solid #00e5ff44;font-size:12px}.footer{margin-top:30px;color:var(--muted);font-size:13px}button{border:1px solid #00e5ff55;background:#00e5ff18;color:var(--text);padding:12px 16px;border-radius:14px;cursor:pointer}button:hover{background:#00e5ff2b}pre{white-space:pre-wrap;color:var(--muted);line-height:1.6}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="hero"><div><div class="eyebrow">DECAN TECHS PRESENTS</div><h1 class="h1">Thunder XMD V2</h1><p class="sub">A professional WhatsApp automation system with modular commands, protected dashboard, persistent data, AI integration and security-conscious defaults.</p></div><span class="pill">VERSION 2.0.0</span></section>
+<section class="grid"><article class="card"><div class="label">Connection</div><div id="connection" class="value">Loading</div></article><article class="card"><div class="label">Runtime</div><div id="runtime" class="value">Loading</div></article><article class="card"><div class="label">Health</div><div id="health" class="value">Checking</div></article></section>
+<section class="card" style="margin-top:18px"><h2>System status</h2><pre id="details">Loading status...</pre><button id="refresh">Refresh status</button></section>
+<div class="footer">© 2026 Decan Techs · Created by Lenny Muriuki</div>
+</main>
+<script>const connection=document.querySelector('#connection');const runtime=document.querySelector('#runtime');const health=document.querySelector('#health');const details=document.querySelector('#details');async function load(){try{const response=await fetch('/api/health');const data=await response.json();connection.textContent=data.connection;runtime.textContent=Math.floor(data.uptime/1000)+'s';health.textContent=data.ok?'Operational':'Unavailable';details.textContent=JSON.stringify(data,null,2)}catch(error){health.textContent='Offline';details.textContent=error.message}}document.querySelector('#refresh').addEventListener('click',load);load();setInterval(load,10000);</script>
+</body>
+</html>

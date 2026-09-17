@@ -1,0 +1,32 @@
+{
+  "name": "thunder-xmd-v2",
+  "version": "2.0.0",
+  "description": "Thunder XMD V2 WhatsApp automation bot by Decan Techs",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "build": "node scripts/build-check.js"
+  },
+  "engines": { "node": ">=20.0.0" },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.18",
+    "better-sqlite3": "^11.7.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "pino": "^9.6.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.33.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.2"
+  }
+}
